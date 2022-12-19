@@ -1,0 +1,26 @@
+data cute_babies;
+input gender $ pet $6-14 number;
+cards;
+boy cockatiel 1
+boy turtle 3
+boy rabbit 4
+girl cockatiel 2
+girl turtle 3
+girl rabbit 7
+;
+proc format;
+value $petfmt 
+'cockatiel'="C:/Users/14246/Desktop/cockatiel.jpg"
+'rabbit'="C:/Users/14246/Desktop/rabbit.jpg"
+'turtle'= "C:/Users/14246/Desktop/turtle.jpg";
+run;
+proc tabulate ;
+class gender pet;
+classlev gender/s=[foreground=white background=purple just=r ];
+classlev pet/s=[foreground=white background=green just=r postimage=$petfmt.];
+var number;
+table gender={s=[foreground=white background=blue just=c]}, 
+pet={s=[foreground=white background=pink just=c]}*number=''*sum=''/box='# of 
+pets';
+run;
+
